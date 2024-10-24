@@ -4,25 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a21db608-2518-45e0-a217-b670f837ab67" name="Changes" comment="Создание коммита">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/diagram/diagram.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/diagram/diagram.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/MySQLConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/Animal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/packanimals/Camel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/packanimals/Donkey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/packanimals/Horse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/pets/Cat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/pets/Dog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/pets/Hamster.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/service/Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/mysql-connector-j-9.1.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/linux/ubuntu.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/controllwork/mysql/mysql.md" afterDir="false" />
+    <list default="true" id="a21db608-2518-45e0-a217-b670f837ab67" name="Changes" comment="добавление основного функционала">
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/TypeOfAnimal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/filehandler/FileHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/filehandler/Writeble.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/presenter/Presenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/view/ConsoleUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/view/MainMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/view/View.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/view/commands/CommandAbstract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/view/commands/CommandGetAllAnimals.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/view/commands/CommandGetAnimal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/view/commands/CommandGetAnimalById.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/view/commands/CommandGetCountOfAnimals.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinalControlWorkOnTheSpecializationBlock.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FinalControlWorkOnTheSpecializationBlock.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/packanimals/Camel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/packanimals/Camel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/packanimals/Donkey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/packanimals/Donkey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/packanimals/Horse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/packanimals/Horse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/pets/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/pets/Cat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/pets/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/pets/Dog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/pets/Hamster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/animals/pets/Hamster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controllwork/javaprogramm/model/service/Service.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +36,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -48,20 +54,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/andre/IdeaProjects/FinalControlWorkOnTheSpecializationBlock/out/production/FinalControlWorkOnTheSpecializationBlock/com/controllwork/javaprogramm/mysql-connector-j-9.1.0.jar",
-    "onboarding.tips.debug.path": "C:/Users/andre/IdeaProjects/FinalControlWorkOnTheSpecializationBlock/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/andre/IdeaProjects/FinalControlWorkOnTheSpecializationBlock/out/production/FinalControlWorkOnTheSpecializationBlock/com/controllwork/javaprogramm/mysql-connector-j-9.1.0.jar&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/andre/IdeaProjects/FinalControlWorkOnTheSpecializationBlock/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\andre\IdeaProjects\FinalControlWorkOnTheSpecializationBlock\src\com\controllwork\javaprogramm" />
@@ -102,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729535734248</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="добавление основного функционала">
+      <option name="closed" value="true" />
+      <created>1729706625877</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729706625877</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +132,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Создание коммита" />
-    <option name="LAST_COMMIT_MESSAGE" value="Создание коммита" />
+    <MESSAGE value="добавление основного функционала" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавление основного функционала" />
   </component>
 </project>
