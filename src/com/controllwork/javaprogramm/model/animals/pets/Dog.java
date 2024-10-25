@@ -11,4 +11,8 @@ public class Dog extends Animal {
     public Dog(String name, LocalDate birthdate, ArrayList<String> commands) {
         super(name, birthdate, commands);
     }
+    @Override
+    public TypeOfAnimal getType(){
+        return type;
+    }
 }

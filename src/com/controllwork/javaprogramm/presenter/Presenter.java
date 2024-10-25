@@ -46,15 +46,31 @@ public class Presenter {
         return service.outputAll();
     }
 
-    public int addAnimalCommand(Animal animal, String command) throws SQLException {
-        return service.addAnimalCommand(animal, command);
+    public int addAnimalCommand(String name, String command) throws SQLException {
+        return service.addAnimalCommand(service.getAnimalLikeClassFromTable(name), command);
     }
 
-    public int addAnimal(Animal animal) throws SQLException {
-        return service.addAnimal(animal);
+    public int addAnimal(String name, String birthdate, String commands, String type) throws SQLException {
+        return service.addAnimal(createAnimal(name,birthdate,commands,type));
     }
 
-    public Animal createAnimal(String name, LocalDate birthdate, ArrayList<String> commands, String type){
+    public boolean getAutoSend(){
+        return service.getAutoSend();
+    }
+
+    public void autoSend(boolean flag){
+        service.autoSend(flag);
+    }
+
+    public void sendBackup() throws SQLException {
+        service.sendBackup();
+    }
+
+    public String inputAllBackups(){
+        return service.inputAllBackups();
+    }
+
+    private Animal createAnimal(String name, String birthdate, String commands, String type){
         return service.createAnimal(name,birthdate,commands,type);
     }
 }

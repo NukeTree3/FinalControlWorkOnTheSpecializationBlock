@@ -12,4 +12,8 @@ public class Hamster extends Animal {
     public Hamster(String name, LocalDate birthdate, ArrayList<String> commands) {
         super(name, birthdate, commands);
     }
+    @Override
+    public TypeOfAnimal getType(){
+        return type;
+    }
 }

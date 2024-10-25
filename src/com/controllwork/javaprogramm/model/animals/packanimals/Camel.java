@@ -7,8 +7,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Camel extends Animal {
-    final TypeOfAnimal type = TypeOfAnimal.camel;
+    final TypeOfAnimal type = TypeOfAnimal.donkey;
+
     public Camel(String name, LocalDate birthdate, ArrayList<String> commands) {
         super(name, birthdate, commands);
+    }
+    @Override
+    public TypeOfAnimal getType(){
+        return type;
     }
 }

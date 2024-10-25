@@ -4,6 +4,7 @@ import com.controllwork.javaprogramm.presenter.Presenter;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -110,7 +111,7 @@ public class ConsoleUI implements View {
                 for (String animal: output.split("%##%")) {
                     System.out.println(animal);
                 }
-                System.out.println("Если нужно конкретное животное, обращайтесь по индексу");
+                System.out.println("Если нужно конкретное животное, обращайтесь по id");
             }
             else {
                 System.out.println(output);
@@ -121,6 +122,110 @@ public class ConsoleUI implements View {
         }
 
 
+    }
+
+    public void getAnimalOrderByBirthdate() throws SQLException {
+        System.out.println("Хотите выбрать временной промежуток(1(да)/2(нет))");
+        String s = scanner.nextLine();
+        if(s.equals("1")){
+            System.out.println("введите начальную дату");
+            String minDate = scanner.nextLine();
+            System.out.println("введите конечную дату");
+            String maxDate = scanner.nextLine();
+            try {
+                LocalDate min = LocalDate.parse(minDate);
+                LocalDate max = LocalDate.parse(maxDate);
+                output(presenter.getAnimalOrderByBirthdate(minDate,maxDate));
+            }
+            catch (DateTimeParseException e){
+                System.out.println("Неверно указана дата");
+            }
+        }
+        else if(s.equals("2")){
+            output(presenter.getAnimalOrderByBirthdate());
+        }
+        else {
+            System.out.println(INPUT_ERROR);
+        }
+    }
+    
+    private void output(String resault){
+        for (String line: resault.split("#&&#")) {
+            for (String column:line.split("@@")) {
+                System.out.print(column + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void getAnimalCommand() throws SQLException {
+        System.out.println("введите имя животного");
+        String name = scanner.nextLine();
+        System.out.println(presenter.getAnimalCommand(name));
+    }
+
+    public void addAnimal() throws SQLException {
+        System.out.println("введите имя");
+        String name = scanner.nextLine();
+        System.out.println("введите дату рождения");
+        String birthdate = scanner.nextLine();
+        System.out.println("введите команды");
+        String commands = scanner.nextLine();
+        System.out.println("введите тип животного");
+        String type = scanner.nextLine();
+        int status = presenter.addAnimal(name,birthdate,commands,type);
+        if(status==-1){
+            inputError();
+        }
+        else if(status == 2){
+            System.out.println("сохранен в внутренне хранилище");
+        }
+        else {
+            System.out.println("готово");
+        }
+    }
+
+    public void addAnimalCommand() throws SQLException {
+        System.out.println("введите имя");
+        String name = scanner.nextLine();
+        System.out.println("введите комманду");
+        String command = scanner.nextLine();
+        presenter.addAnimalCommand(name, command);
+    }
+
+    public void autoSend(){
+        String s="";
+        if(!presenter.getAutoSend()){
+            s="локальный режим, все изменения сохраняются локально";
+        }
+        else {
+            s="режим автоотправки, все ваши изменения автоматически отправляются на сервер";
+        }
+        System.out.println("уважаемы пользователь, у вас включен "+s+" хотите его поменять? 1(да)/2(нет)");
+        s = scanner.nextLine();
+        if(Objects.equals(s, "1")){
+            presenter.autoSend(false);
+            System.out.println("режим изменен");
+        }else if(Objects.equals(s, "2")) {
+            System.out.println("режим не изменен");
+        }
+        else {
+            inputError();
+        }
+    }
+
+    public void sendBackup() throws SQLException {
+        System.out.println("уважаемы пользователь, у вас есть следующие данные, готовые к отправке");
+        System.out.println(presenter.inputAllBackups());
+        System.out.println("отправить их на сервер? 1(да)/2(нет)");
+        String s = scanner.nextLine();
+        if(Objects.equals(s, "1")) {
+            presenter.sendBackup();
+            System.out.println("отправлены");
+        }
+        else {
+            inputError();
+        }
     }
 
 //    public void save() throws IOException {

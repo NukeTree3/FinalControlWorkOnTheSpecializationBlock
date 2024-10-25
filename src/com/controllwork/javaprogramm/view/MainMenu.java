@@ -16,6 +16,13 @@ public class MainMenu {
         commandList.add(new CommandGetAllAnimals(consoleUI));
         commandList.add(new CommandGetAnimal(consoleUI));
         commandList.add(new CommandGetAnimalById(consoleUI));
+        commandList.add(new CommandGetAnimalCommand(consoleUI));
+        commandList.add(new CommandGetAnimalOrderByBirthdate(consoleUI));
+        commandList.add(new CommandAddAnimal(consoleUI));
+        commandList.add(new CommandAddAnimalCommand(consoleUI));
+        commandList.add(new CommandAutoSend(consoleUI));
+        commandList.add(new CommandSendBackup(consoleUI));
+        commandList.add(new CommandFinish(consoleUI));
     }
 
     public String outputMenuInfo(){

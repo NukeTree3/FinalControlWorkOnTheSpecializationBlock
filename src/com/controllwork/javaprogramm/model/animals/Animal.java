@@ -26,8 +26,12 @@ public abstract class Animal {
         return commands;
     }
 
+    public LocalDate getBirthdate(){
+        return birthdate;
+    }
+
     public String getAnimal(){
-        return "'"+name+"', "+"'"+birthdate+"', "+"'"+commands.toString()+"'";
+        return "'"+name+"', "+"'"+birthdate+"', "+"'"+String.join(", ",commands)+"'";
     }
     public TypeOfAnimal getType(){
         return type;
