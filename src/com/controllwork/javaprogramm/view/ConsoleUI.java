@@ -19,7 +19,7 @@ public class ConsoleUI implements View {
     private boolean work;
     private MainMenu mainMenu;
 
-    public ConsoleUI(){
+    public ConsoleUI() throws IOException, ClassNotFoundException {
         scanner = new Scanner(System.in);
         presenter = new Presenter(this);
         work = true;
@@ -36,8 +36,9 @@ public class ConsoleUI implements View {
     }
 
 
-    public void finish(){
+    public void finish() throws IOException {
         System.out.println("Bye, world");
+        presenter.saveAll();
         work=false;
     }
 
@@ -97,24 +98,25 @@ public class ConsoleUI implements View {
     }
 
     public void getAnimalById() throws SQLException {
-        System.out.println("Введите имя животного");
+        System.out.println("Введите id животного");
         String output = presenter.getAnimalById(scanner.nextLine());
         System.out.println(output);
     }
 
     public void getAnimal() throws SQLException {
         System.out.println("Введите имя животного");
-        String output = presenter.getAnimal(scanner.nextLine());
-        if (!output.equals("\n")){
-            if (output.split("%##%").length>1){
-                System.out.println("по вашему запросу найдено несколько значений");
-                for (String animal: output.split("%##%")) {
-                    System.out.println(animal);
+        String outputString = presenter.getAnimal(scanner.nextLine());
+        if (!outputString.equals("\n")){
+            if (outputString.split("%##%").length>1){
+                for (String s:outputString.split("%##%")) {
+                    System.out.println(s);
                 }
+                System.out.println("по вашему запросу найдено несколько значений");
+                    output(outputString);
                 System.out.println("Если нужно конкретное животное, обращайтесь по id");
             }
             else {
-                System.out.println(output);
+                System.out.println(outputString);
             }
         }
         else {
@@ -193,6 +195,14 @@ public class ConsoleUI implements View {
         presenter.addAnimalCommand(name, command);
     }
 
+    public void addAnimalCommandById() throws SQLException {
+        System.out.println("введите Id");
+        String id = scanner.nextLine();
+        System.out.println("введите комманду");
+        String command = scanner.nextLine();
+        presenter.addCommandById(id,command);
+    }
+
     public void autoSend(){
         String s="";
         if(!presenter.getAutoSend()){
@@ -217,14 +227,11 @@ public class ConsoleUI implements View {
     public void sendBackup() throws SQLException {
         System.out.println("уважаемы пользователь, у вас есть следующие данные, готовые к отправке");
         System.out.println(presenter.inputAllBackups());
-        System.out.println("отправить их на сервер? 1(да)/2(нет)");
+        System.out.println("отправить их на сервер? 1(да)/любое другое значение(нет)");
         String s = scanner.nextLine();
         if(Objects.equals(s, "1")) {
             presenter.sendBackup();
             System.out.println("отправлены");
-        }
-        else {
-            inputError();
         }
     }
 

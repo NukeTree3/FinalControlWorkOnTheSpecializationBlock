@@ -4,6 +4,7 @@ import com.controllwork.javaprogramm.model.animals.Animal;
 import com.controllwork.javaprogramm.model.service.Service;
 import com.controllwork.javaprogramm.view.View;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class Presenter {
     Service service;
     View view;
 
-    public Presenter(View view){
+    public Presenter(View view) throws IOException, ClassNotFoundException {
         this.view = view;
         service = new Service();
     }
@@ -70,7 +71,17 @@ public class Presenter {
         return service.inputAllBackups();
     }
 
+    public void saveAll() throws IOException {
+        service.saveAll();
+    }
+
+    public int addCommandById(String id, String command) throws SQLException {
+        return service.addAnimalCommandById(id, command);
+    }
+
     private Animal createAnimal(String name, String birthdate, String commands, String type){
-        return service.createAnimal(name,birthdate,commands,type);
+        Animal animal = service.createAnimal(name,birthdate,commands,type);
+        service.backupAnimals(animal);
+        return animal;
     }
 }

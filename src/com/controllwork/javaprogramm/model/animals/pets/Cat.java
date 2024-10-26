@@ -3,6 +3,7 @@ package com.controllwork.javaprogramm.model.animals.pets;
 import com.controllwork.javaprogramm.model.animals.Animal;
 import com.controllwork.javaprogramm.model.animals.TypeOfAnimal;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

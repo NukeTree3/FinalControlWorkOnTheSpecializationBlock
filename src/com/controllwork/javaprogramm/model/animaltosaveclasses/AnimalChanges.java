@@ -1,8 +1,10 @@
-package com.controllwork.javaprogramm.model;
+package com.controllwork.javaprogramm.model.animaltosaveclasses;
 
 import com.controllwork.javaprogramm.model.animals.Animal;
 
-public class AnimalChanges {
+import java.io.Serializable;
+
+public class AnimalChanges implements Serializable {
     Animal animal;
     String command;
 

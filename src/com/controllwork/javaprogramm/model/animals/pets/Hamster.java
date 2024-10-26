@@ -3,10 +3,11 @@ package com.controllwork.javaprogramm.model.animals.pets;
 import com.controllwork.javaprogramm.model.animals.Animal;
 import com.controllwork.javaprogramm.model.animals.TypeOfAnimal;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Hamster extends Animal {
+public class Hamster extends Animal implements Serializable {
     TypeOfAnimal type = TypeOfAnimal.hamster;
 
     public Hamster(String name, LocalDate birthdate, ArrayList<String> commands) {
