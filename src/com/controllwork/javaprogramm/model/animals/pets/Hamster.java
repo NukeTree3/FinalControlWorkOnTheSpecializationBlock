@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Hamster extends Animal implements Serializable {
+public class Hamster extends Animal {
     TypeOfAnimal type = TypeOfAnimal.hamster;
 
     public Hamster(String name, LocalDate birthdate, ArrayList<String> commands) {

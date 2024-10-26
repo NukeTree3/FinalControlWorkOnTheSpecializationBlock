@@ -25,14 +25,10 @@ public class Service {
 
     ArrayList<String> typeOfAnimal = new ArrayList<>();
     AnimalList animals;
-    //ArrayList<AnimalChanges> animalsChangeList = new ArrayList<>();
     AnimalCahgesList animalCahgesList;
     FileHandler fileHandler = new FileHandler();
     Boolean flag = true;
     MySQLConnection mySQLConnection;
-//    ResultSet resultSet;
-//    Statement statement;
-//    Connection connection;
 
 
 
@@ -71,18 +67,18 @@ public class Service {
         ArrayList<String> commands = new ArrayList<>();
         Collections.addAll(commands, stringCommands.split(", "));
         switch (type) {
-             case "camel" -> {Camel animal = new Camel(name, birthdate, commands);
-                 return animal;}
-             case "donkey" -> {Donkey animal = new Donkey(name, birthdate, commands);
-                 return animal;}
-             case "horse" -> {Horse animal = new Horse(name, birthdate, commands);
-                 return animal;}
-             case "cat" -> {Cat animal = new Cat(name, birthdate, commands);
-                 return animal;}
-             case "dog" -> {Dog animal = new Dog(name, birthdate, commands);
-                 return animal;}
-             case "hamster" -> {Hamster animal = new Hamster(name, birthdate, commands);
-                 return animal;}
+             case "camel" -> {
+                 return new Camel(name, birthdate, commands);}
+             case "donkey" -> {
+                 return new Donkey(name, birthdate, commands);}
+             case "horse" -> {
+                 return new Horse(name, birthdate, commands);}
+             case "cat" -> {
+                 return new Cat(name, birthdate, commands);}
+             case "dog" -> {
+                 return new Dog(name, birthdate, commands);}
+             case "hamster" -> {
+                 return new Hamster(name, birthdate, commands);}
             default -> {
                  return null;
             }
@@ -92,30 +88,25 @@ public class Service {
     private ResultSet getFromDB(String string) throws SQLException {
 
         Connection connection = mySQLConnection.сonnect();
-        //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/human_friends","root","matvei1220");
         if(connection!=null){
             Statement statement = connection.createStatement();
             ResultSet resultSet1 = statement.executeQuery(string);
             mySQLConnection.getAllcloseConnectionResurses(connection,statement,resultSet1);
-            //connection.close();
             return resultSet1;
         }
         else{
-            //connection.close();
             return null;
         }
     }
 
     private int updateDB(String string) throws SQLException {
         Connection connection = mySQLConnection.сonnect();
-        //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/human_friends","root","matvei1220");
         int resultSet = 0;
         if(connection!=null){
             Statement statement = connection.createStatement();
             resultSet = statement.executeUpdate(string);
         }
         int res = resultSet;
-        //assert connection != null;
         connection.close();
         return res;
     }
@@ -151,7 +142,6 @@ public class Service {
             }
         }
         if (tempAnimals.size()==1){
-            //animalsChange.add(tempAnimals.getFirst());
             mySQLConnection.closeAllConnectionResurses();
             return tempAnimals.getFirst();
         }
@@ -168,7 +158,6 @@ public class Service {
             }
         }
         if (tempAnimals.size()==1){
-            //animalsChange.add(tempAnimals.getFirst());
             mySQLConnection.closeAllConnectionResurses();
             return tempAnimals.getFirst();
         }
@@ -197,8 +186,6 @@ public class Service {
             if(flag){
                 if(animalInBackup(animal)){
                     animals.getAnimalList().remove(animal);
-                    //animals.remove(animal);
-                    System.out.println("#############@@@@@@@@@@$$$$$$$$$$$$$$");
                 }
                 return updateDB("INSERT INTO all_animals (name, birthdate, commands, type) VALUES ("+animal.getAnimal()+", "+"'"+animal.getType()+"')");
             }
@@ -211,7 +198,6 @@ public class Service {
     }
 
     public String getAnimalCommand(String animalName) throws SQLException {
-        //StringBuilder stringBuilder = new StringBuilder();
         ResultSet resultSet = getFromDB("SELECT * FROM all_animals WHERE name = '" + animalName+"'");
         ArrayList<String> arrayList = new ArrayList<>();
         if (resultSet != null){
@@ -233,12 +219,9 @@ public class Service {
         AnimalChanges animalChanges = new AnimalChanges(animal,command);
         if (animal != null){
             if(flag){
-                System.out.println("^&^&^&^&^&^&^&^&^&^&^&^&");
                 for (int i = 0; i < animalCahgesList.getAnimalChanges().size(); i++) {
-                    System.out.println("{{}{}{}{}{}}{}{{}{}{}");
                     if(animalCahgesList.getAnimalChanges().get(i).getAnimal().equals(animalChanges.getAnimal()) && animalCahgesList.getAnimalChanges().get(i).getCommand().equals(animalChanges.getCommand())){
                         animalCahgesList.getAnimalChanges().remove(i);
-                        System.out.println(")))))))))))))))))))))");
                     }
                 }
                 if(getCountToName(animal.getName())==1){
@@ -248,6 +231,7 @@ public class Service {
             }
             else {
                 backupAnimals(animal,command);
+                return 1;
             }
         }
         return -1;
@@ -269,6 +253,8 @@ public class Service {
                 else return -2;
             }
             else {
+                System.out.println("id");
+                System.out.println(animal.getAnimal()+" "+ command);
                 backupAnimals(animal,command);
             }
         }
@@ -314,10 +300,11 @@ public class Service {
         ResultSet resultSet = getFromDB("SELECT * FROM all_animals");
         if (resultSet != null){
             while (resultSet.next()) {
+                stringBuilder.append(resultSet.getString("id"));
+                stringBuilder.append(" - ");
                 stringBuilder.append(resultSet.getString("type"));
                 stringBuilder.append(" - ");
                 stringBuilder.append(resultSet.getString("name"));
-//                stringBuilder.append(resultSet.getString("commands"));
                 stringBuilder.append("\n");
             }
         }
@@ -327,7 +314,6 @@ public class Service {
 
     public int getCount() throws SQLException {
         ResultSet resultSet = getFromDB("SELECT COUNT(*) AS count FROM all_animals");
-        //System.out.println(resultSet.getString(0));
         if(resultSet.next()){
             int a = resultSet.getInt("count");
             mySQLConnection.closeAllConnectionResurses();
@@ -422,17 +408,13 @@ public class Service {
         String s = "";
         boolean temp = flag;
         flag=true;
-        System.out.println("_________");
         while (!animals.getAnimalList().isEmpty()){
             addAnimal(animals.getAnimalList().getFirst());
-            System.out.println("########");
         }
         while (!animalCahgesList.getAnimalChanges().isEmpty()){
             int a = addAnimalCommand(animalCahgesList.getAnimalChanges().getFirst().getAnimal(), animalCahgesList.getAnimalChanges().getFirst().getCommand());
-            System.out.println("_________");
             if(a==-1){
                 s = a+"";
-                System.out.println("++++++++++++++++++++++++");
                 break;
             }
         }
@@ -443,14 +425,19 @@ public class Service {
     public String inputAllBackups(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("добавленные животные на локалном хранении\n");
-        for (Animal animal: animals.getAnimalList()) {
-            stringBuilder.append(animal.getAnimal());
-            stringBuilder.append("\n");
+        if(animals.getAnimalList()!=null){
+            for (Animal animal: animals.getAnimalList()) {
+                stringBuilder.append(animal.getAnimal());
+                stringBuilder.append("\n");
+            }
         }
+        stringBuilder.append("\n");
         stringBuilder.append("\nдобавленные изменения животных на локалном хранении\n");
-        for (AnimalChanges animalch: animalCahgesList.getAnimalChanges()) {
-            stringBuilder.append(animalch.getAnimal().getAnimal() + " добавленная информаци " + animalch.getCommand());
-            stringBuilder.append("\n");
+        if(animalCahgesList.getAnimalChanges()!=null){
+            for (AnimalChanges animalch: animalCahgesList.getAnimalChanges()) {
+                stringBuilder.append(animalch.getAnimal().getAnimal() + " добавленная информация " + animalch.getCommand());
+                stringBuilder.append("\n");
+            }
         }
         return stringBuilder.toString();
     }

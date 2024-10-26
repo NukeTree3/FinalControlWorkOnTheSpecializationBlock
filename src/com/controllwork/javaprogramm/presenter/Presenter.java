@@ -6,8 +6,6 @@ import com.controllwork.javaprogramm.view.View;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Presenter {
     Service service;

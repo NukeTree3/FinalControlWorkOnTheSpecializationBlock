@@ -13,12 +13,6 @@ public abstract class ConnectionsToDB {
         this.HOST = HOST;
         this.USERNAME = USERNAME;
         this.PASSWORD = PASSWORD;
-//        try {
-//            this.connection = DriverManager.getConnection(HOST,USERNAME,PASSWORD);
-//        } catch (SQLException e) {
-//            System.err.println("Ошибка в подключении к БД");
-//            e.printStackTrace();
-//        }
     }
 
 

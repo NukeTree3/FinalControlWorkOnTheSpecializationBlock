@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Camel extends Animal implements Serializable {
+public class Camel extends Animal  {
     final TypeOfAnimal type = TypeOfAnimal.donkey;
 
     public Camel(String name, LocalDate birthdate, ArrayList<String> commands) {

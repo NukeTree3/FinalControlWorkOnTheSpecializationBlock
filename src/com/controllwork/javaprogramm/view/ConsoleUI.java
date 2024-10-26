@@ -108,11 +108,8 @@ public class ConsoleUI implements View {
         String outputString = presenter.getAnimal(scanner.nextLine());
         if (!outputString.equals("\n")){
             if (outputString.split("%##%").length>1){
-                for (String s:outputString.split("%##%")) {
-                    System.out.println(s);
-                }
                 System.out.println("по вашему запросу найдено несколько значений");
-                    output(outputString);
+                output(outputString);
                 System.out.println("Если нужно конкретное животное, обращайтесь по id");
             }
             else {
@@ -152,7 +149,7 @@ public class ConsoleUI implements View {
     }
     
     private void output(String resault){
-        for (String line: resault.split("#&&#")) {
+        for (String line: resault.split("%##%")) {
             for (String column:line.split("@@")) {
                 System.out.print(column + " ");
             }
@@ -192,7 +189,14 @@ public class ConsoleUI implements View {
         String name = scanner.nextLine();
         System.out.println("введите комманду");
         String command = scanner.nextLine();
-        presenter.addAnimalCommand(name, command);
+        int a = presenter.addAnimalCommand(name, command);
+        System.out.println(a);
+        if (a==-1 || a==-2){
+            System.out.println("нельзя добавить команду, так как найдено больше одного результата");
+        }
+        else {
+            System.out.println("готово");
+        }
     }
 
     public void addAnimalCommandById() throws SQLException {
@@ -214,7 +218,7 @@ public class ConsoleUI implements View {
         System.out.println("уважаемы пользователь, у вас включен "+s+" хотите его поменять? 1(да)/2(нет)");
         s = scanner.nextLine();
         if(Objects.equals(s, "1")){
-            presenter.autoSend(false);
+            presenter.autoSend(!presenter.getAutoSend());
             System.out.println("режим изменен");
         }else if(Objects.equals(s, "2")) {
             System.out.println("режим не изменен");
@@ -234,12 +238,4 @@ public class ConsoleUI implements View {
             System.out.println("отправлены");
         }
     }
-
-//    public void save() throws IOException {
-//        presenter.save();
-//    }
-//
-//    public void download() throws IOException, ClassNotFoundException {
-//        presenter.download();
-//    }
 }

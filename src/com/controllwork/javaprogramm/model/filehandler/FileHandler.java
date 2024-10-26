@@ -20,7 +20,6 @@ public class FileHandler implements Writeble {
 
     @Override
     public AnimalList downloadAnimalList() throws IOException, ClassNotFoundException {
-        //System.out.println(new File(".").getAbsolutePath());
         try {
             FileInputStream fileInputStream = new FileInputStream("src/com/controllwork/javaprogramm/model/savesfiles/savedAnimalList.txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -33,7 +32,7 @@ public class FileHandler implements Writeble {
             return null;
         }
     }
-
+    @Override
     public void savedAnimalChangesList(AnimalCahgesList animalList) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("src/com/controllwork/javaprogramm/model/savesfiles/savedAnimalChangesList.txt");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
