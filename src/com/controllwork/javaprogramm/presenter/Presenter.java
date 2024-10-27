@@ -78,8 +78,7 @@ public class Presenter {
     }
 
     private Animal createAnimal(String name, String birthdate, String commands, String type){
-        Animal animal = service.createAnimal(name,birthdate,commands,type);
-        service.backupAnimals(animal);
-        return animal;
+        //service.backupAnimals(animal);
+        return service.createAnimal(name,birthdate,commands,type);
     }
 }

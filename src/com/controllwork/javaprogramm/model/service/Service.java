@@ -253,8 +253,6 @@ public class Service {
                 else return -2;
             }
             else {
-                System.out.println("id");
-                System.out.println(animal.getAnimal()+" "+ command);
                 backupAnimals(animal,command);
             }
         }
@@ -271,7 +269,7 @@ public class Service {
                 stringBuilder.append(resultSet.getString("birthdate"));
                 stringBuilder.append("@@");
                 stringBuilder.append(resultSet.getString("commands"));
-                stringBuilder.append("#&&#");
+                stringBuilder.append("%##%");
             }
         }
         mySQLConnection.closeAllConnectionResurses();

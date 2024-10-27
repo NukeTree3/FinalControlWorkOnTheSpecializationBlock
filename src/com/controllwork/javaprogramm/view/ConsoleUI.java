@@ -37,7 +37,7 @@ public class ConsoleUI implements View {
 
 
     public void finish() throws IOException {
-        System.out.println("Bye, world");
+        printText("Bye, world");
         presenter.saveAll();
         work=false;
     }
@@ -48,7 +48,7 @@ public class ConsoleUI implements View {
     }
 
     public void helloWorld(){
-        System.out.println("Hello world");
+        printText("Hello world");
     }
 
     public void printMenu(){
@@ -86,50 +86,50 @@ public class ConsoleUI implements View {
     }
 
     private void inputError(){
-        System.out.println(INPUT_ERROR);
+        printText(INPUT_ERROR);
     }
 
     public void getCount() throws SQLException {
-        System.out.println("Общее количество зарегистрированнх животных: "+presenter.getCount());
+        printText("Общее количество зарегистрированнх животных: "+presenter.getCount());
     }
 
     public void outputAllAnimals() throws SQLException {
-        System.out.println(presenter.outputAll());
+        printText(presenter.outputAll());
     }
 
     public void getAnimalById() throws SQLException {
-        System.out.println("Введите id животного");
+        printText("Введите id животного");
         String output = presenter.getAnimalById(scanner.nextLine());
-        System.out.println(output);
+        printText(output);
     }
 
     public void getAnimal() throws SQLException {
-        System.out.println("Введите имя животного");
+        printText("Введите имя животного");
         String outputString = presenter.getAnimal(scanner.nextLine());
         if (!outputString.equals("\n")){
             if (outputString.split("%##%").length>1){
-                System.out.println("по вашему запросу найдено несколько значений");
+                printText("по вашему запросу найдено несколько значений");
                 output(outputString);
-                System.out.println("Если нужно конкретное животное, обращайтесь по id");
+                printText("Если нужно конкретное животное, обращайтесь по id");
             }
             else {
-                System.out.println(outputString);
+                printText(outputString);
             }
         }
         else {
-            System.out.println("такого животного нет");
+            printText("такого животного нет");
         }
 
 
     }
 
     public void getAnimalOrderByBirthdate() throws SQLException {
-        System.out.println("Хотите выбрать временной промежуток(1(да)/2(нет))");
+        printText("Хотите выбрать временной промежуток(1(да)/2(нет))");
         String s = scanner.nextLine();
         if(s.equals("1")){
-            System.out.println("введите начальную дату");
+            printText("введите начальную дату");
             String minDate = scanner.nextLine();
-            System.out.println("введите конечную дату");
+            printText("введите конечную дату");
             String maxDate = scanner.nextLine();
             try {
                 LocalDate min = LocalDate.parse(minDate);
@@ -137,72 +137,73 @@ public class ConsoleUI implements View {
                 output(presenter.getAnimalOrderByBirthdate(minDate,maxDate));
             }
             catch (DateTimeParseException e){
-                System.out.println("Неверно указана дата");
+                printText("Неверно указана дата");
             }
         }
         else if(s.equals("2")){
             output(presenter.getAnimalOrderByBirthdate());
         }
         else {
-            System.out.println(INPUT_ERROR);
+            printText(INPUT_ERROR);
         }
     }
     
     private void output(String resault){
         for (String line: resault.split("%##%")) {
+            StringBuilder s = new StringBuilder();
             for (String column:line.split("@@")) {
-                System.out.print(column + " ");
+                s.append(column).append(" ");
             }
-            System.out.println();
+            printText(String.valueOf(s));
         }
     }
 
     public void getAnimalCommand() throws SQLException {
-        System.out.println("введите имя животного");
+        printText("введите имя животного");
         String name = scanner.nextLine();
-        System.out.println(presenter.getAnimalCommand(name));
+        printText(presenter.getAnimalCommand(name));
     }
 
     public void addAnimal() throws SQLException {
-        System.out.println("введите имя");
+        printText("введите имя");
         String name = scanner.nextLine();
-        System.out.println("введите дату рождения");
+        printText("введите дату рождения");
         String birthdate = scanner.nextLine();
-        System.out.println("введите команды");
+        printText("введите команды");
         String commands = scanner.nextLine();
-        System.out.println("введите тип животного");
+        printText("введите тип животного");
         String type = scanner.nextLine();
         int status = presenter.addAnimal(name,birthdate,commands,type);
         if(status==-1){
             inputError();
         }
-        else if(status == 2){
-            System.out.println("сохранен в внутренне хранилище");
+        else if(status == -2){
+            printText("сохранен в внутренне хранилище");
         }
         else {
-            System.out.println("готово");
+            printText("готово");
         }
     }
 
     public void addAnimalCommand() throws SQLException {
-        System.out.println("введите имя");
+        printText("введите имя");
         String name = scanner.nextLine();
-        System.out.println("введите комманду");
+        printText("введите комманду");
         String command = scanner.nextLine();
         int a = presenter.addAnimalCommand(name, command);
-        System.out.println(a);
+        printText(a+"");
         if (a==-1 || a==-2){
-            System.out.println("нельзя добавить команду, так как найдено больше одного результата");
+            printText("нельзя добавить команду, так как найдено больше одного результата");
         }
         else {
-            System.out.println("готово");
+            printText("готово");
         }
     }
 
     public void addAnimalCommandById() throws SQLException {
-        System.out.println("введите Id");
+        printText("введите Id");
         String id = scanner.nextLine();
-        System.out.println("введите комманду");
+        printText("введите комманду");
         String command = scanner.nextLine();
         presenter.addCommandById(id,command);
     }
@@ -215,13 +216,13 @@ public class ConsoleUI implements View {
         else {
             s="режим автоотправки, все ваши изменения автоматически отправляются на сервер";
         }
-        System.out.println("уважаемы пользователь, у вас включен "+s+" хотите его поменять? 1(да)/2(нет)");
+        printText("уважаемы пользователь, у вас включен "+s+" хотите его поменять? 1(да)/2(нет)");
         s = scanner.nextLine();
         if(Objects.equals(s, "1")){
             presenter.autoSend(!presenter.getAutoSend());
-            System.out.println("режим изменен");
+            printText("режим изменен");
         }else if(Objects.equals(s, "2")) {
-            System.out.println("режим не изменен");
+            printText("режим не изменен");
         }
         else {
             inputError();
@@ -229,13 +230,13 @@ public class ConsoleUI implements View {
     }
 
     public void sendBackup() throws SQLException {
-        System.out.println("уважаемы пользователь, у вас есть следующие данные, готовые к отправке");
-        System.out.println(presenter.inputAllBackups());
-        System.out.println("отправить их на сервер? 1(да)/любое другое значение(нет)");
+        printText("уважаемы пользователь, у вас есть следующие данные, готовые к отправке");
+        printText(presenter.inputAllBackups());
+        printText("отправить их на сервер? 1(да)/любое другое значение(нет)");
         String s = scanner.nextLine();
         if(Objects.equals(s, "1")) {
             presenter.sendBackup();
-            System.out.println("отправлены");
+            printText("отправлены");
         }
     }
 }
